@@ -153,7 +153,8 @@ namespace WandEnhancer.Core
                 new AsarContentPatcher(_unpackedPath, _logger, new JavaScriptPatchApplier(_logger)).Patch(_config.PatchTypes);
                 new RemotePanelInjector(_unpackedPath, _logger).Inject(_config.PatchTypes, _config.CustomScriptPaths);
                 PackSources();
-                _strategy.ApplyEnablement(new PatchContext(_weModConfig, _logger, _unpackedPath));
+                _strategy.ApplyEnablement(new PatchContext(_weModConfig, _logger, _unpackedPath,
+                    replacesLauncher: _strategy.RequiresLauncherAlways || _config.AutoApplyAfterUpdate));
 
                 // Supervised needs its launcher at every start; static only to re-apply on update.
                 if (_strategy.RequiresLauncherAlways || _config.AutoApplyAfterUpdate)

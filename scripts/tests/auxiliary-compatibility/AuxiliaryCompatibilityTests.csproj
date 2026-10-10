@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="../../../WandEnhancer/Core/ELogType.cs" Link="ELogType.cs" />
+    <Compile Include="../../../WandEnhancer/Core/Patching/Strategies/Static/DotNetImage.cs" Link="DotNetImage.cs" />
+    <Compile Include="../../../WandEnhancer/Core/Patching/Strategies/Static/AuxTrustNeutralizer.cs" Link="AuxTrustNeutralizer.cs" />
+  </ItemGroup>
+</Project>

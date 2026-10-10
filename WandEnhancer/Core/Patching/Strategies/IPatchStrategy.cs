@@ -14,11 +14,13 @@ namespace WandEnhancer.Core.Patching.Strategies
 
     internal sealed class PatchContext
     {
-        public PatchContext(WeModConfig install, Action<string, ELogType> log, string unpackedPath = null)
+        public PatchContext(WeModConfig install, Action<string, ELogType> log, string unpackedPath = null,
+            bool replacesLauncher = false)
         {
             Install = install;
             Log = log;
             UnpackedPath = unpackedPath;
+            ReplacesLauncher = replacesLauncher;
         }
 
         public WeModConfig Install { get; }
@@ -26,5 +28,7 @@ namespace WandEnhancer.Core.Patching.Strategies
 
         /// <summary>Root of extracted app.asar.unpacked tree (null at launch)</summary>
         public string UnpackedPath { get; }
+
+        public bool ReplacesLauncher { get; }
     }
 }

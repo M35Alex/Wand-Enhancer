@@ -113,6 +113,7 @@ Building from source on Windows requires a local development environment.
 - `Node.js` and `pnpm`
 - `Visual Studio 2022` or `Build Tools for Visual Studio 2022` with `MSBuild`
 - .NET Framework 4.8 desktop build tools / targeting pack
+- .NET 8 SDK for the auxiliary compatibility regression harness
 
 ### Build steps
 
@@ -127,6 +128,9 @@ Update notifications are excluded by default. To compile them in locally, run `b
 ---
 
 ## ❓ Q&A
+
+- **Wand opens, but loading mods fails with `client_integrity_failed`?**
+  - Newer auxiliary services independently validate Electron fuses, the ASAR header, and the parent launcher. Compatibility must be applied to the auxiliary for both Static and Supervised; switching methods alone does not address these checks. Rebuild from the updated source, Restore the previous patch, then apply the new build. After a failed game launch, use Wand's **Settings → General → Save log** and copy `launcher.log` before Restore, which deletes the launcher logs.
 
 - **Why is there no `.exe` in GitHub Releases?**
   - Official releases are notes-only on purpose. The project no longer distributes prebuilt executables because unsigned or self-built patching tools are repeatedly reuploaded, mislabeled, and flagged by third-party scanners. Build the executable from your own fork using GitHub Actions instead.

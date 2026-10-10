@@ -116,6 +116,14 @@ Suggestions for new features or improvements are welcome! Create an Issue descri
 
 Run a focused web test from `web-panel` with `pnpm exec vitest run <test-file>`.
 
+The auxiliary compatibility regression harness requires the .NET 8 SDK and runs during `build.cmd`. To run it independently, with an optional original auxiliary binary to validate only temporary copies:
+
+```powershell
+dotnet run --project scripts/tests/auxiliary-compatibility/AuxiliaryCompatibilityTests.csproj --configuration Release -- scripts/tests/auxiliary-compatibility/fixture/AuxiliaryFixture.csproj [path-to-original-WandAuxiliaryService.exe]
+```
+
+Omit the bracketed argument for synthetic fixtures only. The harness checks Static, Supervised, launcher replacement, legacy services, obfuscated enum fields, unsupported shapes, valid IL method headers, and preservation of unrelated bytes and caller checks. It never executes the original auxiliary.
+
 After building, validate against an original extracted Wand bundle directory:
 
 ```powershell

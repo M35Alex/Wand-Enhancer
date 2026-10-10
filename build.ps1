@@ -118,5 +118,11 @@ Invoke-Step 'Test structural patch locators' {
     & (Join-Path $repoRoot 'scripts\test-patch-locators.ps1') -AssemblyPath $assemblyPath
 }
 
+Invoke-Step 'Test auxiliary compatibility' {
+    $testRoot = Join-Path $repoRoot 'scripts\tests\auxiliary-compatibility'
+    & dotnet run --project (Join-Path $testRoot 'AuxiliaryCompatibilityTests.csproj') --configuration Release -- `
+        (Join-Path $testRoot 'fixture\AuxiliaryFixture.csproj')
+}
+
 Write-Host ''
 Write-Host "Build completed successfully ($Configuration)." -ForegroundColor Green
